@@ -23,23 +23,21 @@ export const Fulfillment = ({ fulfillmentInfo }: FulfillmentProps) => {
   return (
     <InfoSection title={type_display} subTitle="Toronto Central">
       <InfoSection.Item title={`${type_display} Date`}>
-        <div>{pickup_start_time || formatDate(new Date())}</div>
+        {pickup_start_time || formatDate(new Date())}
       </InfoSection.Item>
 
       <InfoSection.Item title={`${type_display} Timeslot`}>
-        <div>
-          {pickup_start_time || 'testing timeslot'} -{' '}
-          {pickup_end_time || 'testing timeslot'}
-        </div>
+        {pickup_start_time || 'start timeslot'} -{' '}
+        {pickup_end_time || 'end timeslot'}
       </InfoSection.Item>
 
       <InfoSection.Item title={`${type_display} Address`}>
-        <div>{fulfillment_address || 'testing address'}</div>
+        {fulfillment_address || 'testing address'}
       </InfoSection.Item>
 
       <InfoSection.Item title={`${type_display} Instructions`}>
         {/* using || here for testing, as some input is empty string instead of falsey value */}
-        <div>{instructions || 'testing instructions'}</div>
+        {instructions || 'testing instructions'}
       </InfoSection.Item>
     </InfoSection>
   );

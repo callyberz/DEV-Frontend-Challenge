@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
+// TODO/CLee: add types
 export async function getOrder() {
   const response = await fetch(
     'https://vop4f76uc3.execute-api.us-east-1.amazonaws.com'

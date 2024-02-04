@@ -1,8 +1,19 @@
 import { formatDate } from '@/utils/DateUtils';
 import { Badge } from '../ui/badge';
 
-export const OrderHeader = ({ data }) => {
-  const { id, supplier, createdAt, status } = data;
+interface OrderHeaderProps {
+  orderInfo: {
+    id: number;
+    supplier: {
+      business_name: string;
+    };
+    createdAt: string;
+    status: string;
+  };
+}
+
+export const OrderHeader = ({ orderInfo }: OrderHeaderProps) => {
+  const { id, supplier, createdAt, status } = orderInfo;
 
   return (
     <div className="flex items-center justify-between border-b pb-4 border-dashed">

@@ -32,10 +32,10 @@ export const ProductItem = ({ product }) => {
 
       <div className="flex flex-col items-end">
         <Link
-          className="text-Green600 hover:text-green-600 underline lowercase"
+          className="text-Green600 hover:text-green-600 underline text-sm"
           href={`/product/${id}`}
         >
-          View
+          view
         </Link>
         <span className="text-md text-Grey800">${total_price.toFixed(2)}</span>
       </div>

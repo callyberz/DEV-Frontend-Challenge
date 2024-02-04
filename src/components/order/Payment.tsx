@@ -16,11 +16,11 @@ export const Payment = ({
   return (
     <InfoSection title={'Payment'} subTitle={payment_strategy_name}>
       <InfoSection.Item title={payment_strategy_name}>
-        <div>{payment_strategy_amount || 'testing payment amount'}</div>
+        {payment_strategy_amount.toFixed(2)}
       </InfoSection.Item>
 
       <InfoSection.Item title="Payment Due">
-        <div>{due_date || formatDate(new Date())}</div>
+        {due_date || formatDate(new Date())}
       </InfoSection.Item>
       {/* TODO/CLee: display more fields/values based on different methods */}
     </InfoSection>

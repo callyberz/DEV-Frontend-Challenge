@@ -20,9 +20,7 @@ export default async function Order() {
     customer_note,
     order_note,
     supplier,
-    order_entries,
-    salestax_rate,
-    fulfillment_fees
+    order_entries
   } = order;
 
   return (
@@ -31,7 +29,7 @@ export default async function Order() {
 
       <div className="p-6 bg-white rounded-lg shadow">
         <OrderHeader
-          data={{
+          orderInfo={{
             id,
             supplier,
             createdAt: created_at,
@@ -43,8 +41,8 @@ export default async function Order() {
 
         <OrderSummary
           products={order_entries}
-          salestaxRate={salestax_rate}
-          shippingFee={fulfillment_fees}
+          salestaxRate={order.salestax_rate}
+          shippingFee={order.fulfillment_fees}
           paymentStatus={payment.status}
           total={order.total}
           subTotal={order.subtotal}
