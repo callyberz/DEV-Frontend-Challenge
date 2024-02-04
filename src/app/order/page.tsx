@@ -1,40 +1,69 @@
 import React from 'react';
+import Link from 'next/link';
 import { getOrder } from '@/utils/helper';
-import { formatDate } from '@/utils/DateUtils';
 import { Fulfillment } from '@/components/order/Fulfillment';
 import { Payment } from '@/components/order/Payment';
 import { OrderNote } from '@/components/order/OrderNote';
 import { ReviewForm } from '@/components/order/ReviewForm';
+import { OrderHeader } from '@/components/order/OrderHeader';
+import { ProductList } from '@/components/order/ProductList';
+import { OrderSummary } from '@/components/OrderSummary';
 
 export default async function Order() {
   const order = await getOrder();
   const {
+    id,
+    created_at,
+    status,
     fulfillment,
     payment,
     customer_note,
     order_note,
     supplier,
-    order_entries
+    order_entries,
+    salestax_rate,
+    fulfillment_fees
   } = order;
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow">
-      {/* <OrderHeader data={order} />
-      <OrderItems orders={order_entries} /> */}
+    <div className="max-w-3xl mx-auto md:my-10">
+      <Link href="/">Back to Orders</Link>
 
-      <Fulfillment fulfillmentInfo={fulfillment} />
+      <div className="p-6 bg-white rounded-lg shadow">
+        <OrderHeader
+          data={{
+            id,
+            supplier,
+            createdAt: created_at,
+            status
+          }}
+        />
 
-      <Payment paymentInfo={payment} />
+        <ProductList products={order_entries} />
 
-      <OrderNote
-        OrderInfo={{
-          customerNote: customer_note,
-          orderNote: order_note,
-          supplier
-        }}
-      />
+        <OrderSummary
+          products={order_entries}
+          salestaxRate={salestax_rate}
+          shippingFee={fulfillment_fees}
+          paymentStatus={payment.status}
+          total={order.total}
+          subTotal={order.subtotal}
+        />
 
-      <ReviewForm />
+        <Fulfillment fulfillmentInfo={fulfillment} />
+
+        <Payment paymentInfo={payment} />
+
+        <OrderNote
+          orderInfo={{
+            customerNote: customer_note,
+            orderNote: order_note,
+            supplier
+          }}
+        />
+
+        <ReviewForm />
+      </div>
     </div>
   );
 }

@@ -1,24 +1,43 @@
 import React from 'react';
-import { Avatar } from '../../ui/avatar';
 import Link from 'next/link';
+import Image from 'next/image';
+import productImage from './productImage.png';
 
-export const ProductItem = () => {
+export const ProductItem = ({ product }) => {
+  const {
+    id,
+    product_name,
+    unit_quantity,
+    price_per_unit,
+    charge_type,
+    total_price
+  } = product;
   return (
-    <div className="flex items-center justify-between">
-      <div className="flex items-center space-x-2">
-        <Avatar>
-          TEST
-        </Avatar>
-        <div>
-          <p className="font-medium">Sweet Onion x6</p>
-          <p className="text-sm text-gray-500">$0.80 / each</p>
+    <div className="flex justify-between items-center p-4 border-b border-gray-200">
+      <div className="flex items-center">
+        <Image
+          src={productImage}
+          alt={product_name}
+          className="h-16 w-16 object-cover mr-4"
+        />
+        <div className="flex flex-col">
+          <span className="text-Grey800">
+            {product_name} x{unit_quantity}
+          </span>
+          <span className="text-Grey600">
+            ${price_per_unit} / {charge_type}
+          </span>
         </div>
       </div>
-      <div>
-        <Link className="text-indigo-600" href="#">
-          view
+
+      <div className="flex flex-col items-end">
+        <Link
+          className="text-Green600 hover:text-green-600 underline lowercase"
+          href={`/product/${id}`}
+        >
+          View
         </Link>
-        <p className="text-right">$4.80</p>
+        <span className="text-md text-Grey800">${total_price.toFixed(2)}</span>
       </div>
     </div>
   );

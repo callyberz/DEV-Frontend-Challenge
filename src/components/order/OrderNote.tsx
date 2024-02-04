@@ -1,4 +1,3 @@
-import { formatDate } from '@/utils/DateUtils';
 import { InfoSection } from './ui/InfoSection';
 import React from 'react';
 
@@ -7,15 +6,15 @@ interface Supplier {
 }
 
 interface OrderNoteProps {
-  OrderInfo: {
+  orderInfo: {
     orderNote: string;
     customerNote: string;
     supplier: Supplier;
   };
 }
 
-export const OrderNote = ({ OrderInfo }: OrderNoteProps) => {
-  const { orderNote, customerNote, supplier } = OrderInfo;
+export const OrderNote = ({ orderInfo }: OrderNoteProps) => {
+  const { orderNote, customerNote, supplier } = orderInfo;
   return (
     <InfoSection title={'Order Notes'}>
       <InfoSection.Item title={'Checkout note from you'}>

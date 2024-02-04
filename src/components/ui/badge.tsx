@@ -1,15 +1,15 @@
 import React from 'react';
 
 interface BadgeProps {
-  variant: 'default' | 'primary' | 'secondary';
+  // TODO/CLee: extend more variants
   children: React.ReactNode;
 }
 
 export const Badge = (props: BadgeProps) => {
-  const { variant, children } = props;
+  const { children } = props;
   return (
     <span
-      className={`px-2 py-1 rounded-md bg-${variant}-100 text-${variant}-800`}
+      className={`px-4 py-1 bg-Green100 text-Green800 rounded-full capitalize`}
     >
       {children}
     </span>
